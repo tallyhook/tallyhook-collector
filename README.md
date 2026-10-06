@@ -118,6 +118,22 @@ Parsing every local log is the slow part, so it is cached for a minute per proce
 question takes a few seconds on a busy machine, the rest are instant. Set `"privacy": true` in
 `~/.tallyhook/config.json` and `expensive_sessions` omits the prompt snippet too.
 
+## Install it as an agent skill
+
+```sh
+npx skills add tallyhook/tallyhook-collector
+```
+
+Installs `agent-cost-report` for Claude Code, Codex, Cline, Amp and twenty-odd other agents at once,
+so the agent itself can answer "what has this project cost" and "what do I bill Acme this month"
+without being told how. The skill carries the rules that stop the answer being wrong: that these are
+list-price equivalents rather than a bill, that a client report covers only mapped repositories and
+says in money what it excluded, and that an unreachable price table means report tokens rather than
+guess at dollars.
+
+For Claude Code specifically there is also a plugin, with `/tallyhook:cost` and `/tallyhook:clients`
+plus the MCP server above.
+
 ## When one machine is not enough
 
 Everything above reads only what is on this disk, which is also its limit: it cannot see your
